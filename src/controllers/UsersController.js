@@ -1,3 +1,5 @@
+const AppError = require("../utils/AppError")
+
 //vamos usar a class para agrupamento de functions
 class UsersController {
     /**
@@ -8,8 +10,14 @@ class UsersController {
      * delete - DELETE para remover um registro
      */
 
+
     create(request,response){
         const { name, email, password } = request.body
+
+        if (!name) {
+            throw new AppError("Name is obligatory")
+        }
+
         response.status(201).json({ name, email, password })
     }
 }
