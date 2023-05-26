@@ -23,6 +23,10 @@ class UsersController {
             throw new AppError("This email is already in use.")
         }
 
+        //insert into database
+        await database.run(
+            "INSERT INTO users (name, email, password) VALUES (?, ?, ?)", [name, email, password]
+        )
         return response.status(201).json()
     }
 }
