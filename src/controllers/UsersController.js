@@ -1,5 +1,7 @@
 const AppError = require("../utils/AppError")
 
+const sqliteConnection = require("../database/sqlite")
+
 //vamos usar a class para agrupamento de functions
 class UsersController {
     /**
@@ -11,14 +13,17 @@ class UsersController {
      */
 
 
-    create(request,response){
+    async create(request,response){
         const { name, email, password } = request.body
+        const database = await sqliteConnection()
+        // get information
+        const checkUserExists = await database.get("SELECT * FROM users WHERE email = (?)",[email])
 
-        if (!name) {
-            throw new AppError("Name is obligatory")
+        if (checkUserExists){
+            throw new AppError("This email is already in use.")
         }
 
-        response.status(201).json({ name, email, password })
+        return response.status(201).json()
     }
 }
 
