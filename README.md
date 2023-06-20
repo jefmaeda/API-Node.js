@@ -35,8 +35,18 @@ All tables have this sequence.
 - Middlewares
 - beekeeper studio : open database.db file
 - bcryptjs : encrypt password
+- Query Builder : database interpreter
+- filter : filter in data table
+- map : create the new table
 
-### dependencies e devDependencies
+### Why use the Query Builder ?
+Each database has a script, for the application to be flexible for all databases.
+Better use the Query Builder.<br>
+learning commands
+- whereLike
+- whereIn
+
+### Dependencies e devDependencies
 As diferença entre eles sao,
 para a aplicação funcional, deve usar as seguintes dempedencia(dependencies).
 Para facilitar no desenvolvimento do aplicativo, utilizamos o devDependencies.
